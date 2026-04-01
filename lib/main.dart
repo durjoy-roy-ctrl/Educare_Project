@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:educare/navigation/main_navigation.dart';
-import 'splash_screen.dart';
-import 'features/login/login_screen.dart';
+import 'features/courses/courses_page.dart';
+import 'features/exams/exams_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,16 +16,55 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(useMaterial3: true),
-      home: const SplashScreen(),
-      routes: {
-        '/login': (context) => const LoginScreen(),
-        '/home': (context) => const MainNavigation(
-          initialIndex: 0,
-          phone: "0000000000",
-          userName: "Guest",
+      home: const HomePage(),
+    );
+  }
+}
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("EduCare App"),
+        backgroundColor: const Color(0xFF1E3A8A),
+      ),
+
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const CoursesPage(),
+                  ),
+                );
+              },
+              child: const Text("Courses"),
+            ),
+
+            const SizedBox(height: 20),
+
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ExamsPage(),
+                  ),
+                );
+              },
+              child: const Text("Exams"),
+            ),
+          ],
         ),
-      },
+      ),
     );
   }
 }
