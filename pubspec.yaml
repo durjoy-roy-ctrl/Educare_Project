@@ -1,5 +1,5 @@
-name: educare
-description: "A new Flutter project."
+name: educare4
+description: "A new Flutter project connected with Firebase"
 publish_to: 'none'
 
 version: 1.0.0+1
@@ -10,19 +10,25 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
   url_launcher: ^6.2.5
 
+  # Navigation & State Management (Your addition)
+  get: ^4.6.6
+
+  # UI
   cupertino_icons: ^1.0.8
 
+  # Firebase (Matched to his working versions to avoid errors)
   firebase_core: ^3.6.0
-  cloud_firestore: ^5.4.4
   firebase_auth: ^5.3.1
+  cloud_firestore: ^5.4.4
   firebase_database: ^11.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^6.0.0
+  flutter_lints: ^2.0.0 # Standard for Flutter 3.10.x
 
 flutter:
   uses-material-design: true
