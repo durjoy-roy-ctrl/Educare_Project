@@ -67,7 +67,7 @@ class DefaultFirebaseOptions {
     projectId: 'educare4-eb83e',
     databaseURL: 'https://educare4-eb83e-default-rtdb.firebaseio.com',
     storageBucket: 'educare4-eb83e.firebasestorage.app',
-    iosBundleId: 'com.example.educare',
+    iosBundleId: 'com.example.educare4',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
@@ -77,7 +77,7 @@ class DefaultFirebaseOptions {
     projectId: 'educare4-eb83e',
     databaseURL: 'https://educare4-eb83e-default-rtdb.firebaseio.com',
     storageBucket: 'educare4-eb83e.firebasestorage.app',
-    iosBundleId: 'com.example.educare',
+    iosBundleId: 'com.example.educare4',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
