@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "198028372788",
+    "firebase_url": "https://educare4-eb83e-default-rtdb.firebaseio.com",
+    "project_id": "educare4-eb83e",
+    "storage_bucket": "educare4-eb83e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:198028372788:android:e88381c3f5dbfe1599d361",
+        "android_client_info": {
+          "package_name": "com.example.edu_care"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANFq3wJBHC16FVzuV-_RMRCsf4EjkoTRo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:198028372788:android:8806c139c8f6143899d361",
+        "android_client_info": {
+          "package_name": "com.example.educare4"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANFq3wJBHC16FVzuV-_RMRCsf4EjkoTRo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
