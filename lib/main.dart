@@ -168,7 +168,6 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-// --- UPDATED QNA PAGE (Real-time List View) ---
 class QnaPage extends StatefulWidget {
   final String username;
   const QnaPage({super.key, required this.username});
@@ -190,7 +189,7 @@ class _QnaPageState extends State<QnaPage> {
           'timestamp': FieldValue.serverTimestamp(),
         });
         _controller.clear();
-        FocusScope.of(context).unfocus(); // সাবমিট করার পর কিবোর্ড বন্ধ হবে
+        FocusScope.of(context).unfocus();
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text("Error: $e")),
@@ -207,7 +206,6 @@ class _QnaPageState extends State<QnaPage> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            // --- Input Field ---
             TextField(
               controller: _controller,
               decoration: InputDecoration(
@@ -227,8 +225,6 @@ class _QnaPageState extends State<QnaPage> {
               child: Text("Recent Questions", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             ),
             const SizedBox(height: 10),
-
-            // --- Real-time List of Questions ---
             Expanded(
               child: StreamBuilder<QuerySnapshot>(
                 stream: _firestore.collection('questions').orderBy('timestamp', descending: true).snapshots(),
@@ -310,8 +306,7 @@ class _SettingsPageState extends State<SettingsPage> {
       appBar: AppBar(title: const Text("Settings"), actions: const [ThemeToggleButton()]),
       body: ListView(
         children: [
-          ListTile(leading: const Icon(Icons.lock, color: Color(0xff261CC1)), title: const Text("Change Password"), trailing: const Icon(Icons.arrow_forward_ios, size: 16), onTap: () {}),
-          const Divider(),
+          // "Change Password" অপশনটি এখান থেকে সরিয়ে ফেলা হয়েছে।
           ListTile(
             leading: const Icon(Icons.language, color: Color(0xff261CC1)),
             title: const Text("Language"),
@@ -320,7 +315,10 @@ class _SettingsPageState extends State<SettingsPage> {
             onTap: _showLanguageDialog,
           ),
           const Divider(),
-          const Padding(padding: EdgeInsets.all(20.0), child: Text("App Version 1.0.0", style: TextStyle(color: Colors.grey))),
+          const Padding(
+              padding: EdgeInsets.all(20.0),
+              child: Text("App Version 1.0.0", style: TextStyle(color: Colors.grey))
+          ),
         ],
       ),
     );
