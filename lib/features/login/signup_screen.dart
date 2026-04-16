@@ -49,7 +49,7 @@ class _SignupScreenState extends State<SignupScreen> {
     }
 
     try {
-      // 1. Create user in Firebase Auth
+      /// Create user in Firebase Auth
       UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
@@ -57,10 +57,10 @@ class _SignupScreenState extends State<SignupScreen> {
 
       String uid = userCredential.user!.uid;
 
-      // 2. Determine role
+      /// Finding role
       String role = email.contains('@aust.edu') ? 'students' : 'teachers';
 
-      // 3. Store additional info in Firestore under role-based branch
+      /// Role based storage
       await _firestore.collection(role).doc(uid).set({
         'name': name,
         'phone': phone,
@@ -68,7 +68,7 @@ class _SignupScreenState extends State<SignupScreen> {
         'role': role,
       });
 
-      // 4. Navigate to MainNavigation
+      /// going to MainNavigation
       if (mounted) {
         Navigator.pushReplacement(
           context,
@@ -83,7 +83,7 @@ class _SignupScreenState extends State<SignupScreen> {
         );
       }
     } on FirebaseAuthException catch (e) {
-      // Handle Firebase signup errors
+      /// Handling errors
       String message = e.message ?? 'Signup failed';
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
     }

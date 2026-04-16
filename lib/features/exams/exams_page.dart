@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 
+import '../../navigation/main_navigation.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -11,13 +13,26 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ExamsPage(),
+      home: ExamsPage(
+      userName: "Demo User",
+      phone: "000000",
+      role: "student",
+    ),
     );
   }
 }
 
 class ExamsPage extends StatelessWidget {
-  const ExamsPage({super.key});
+  final String userName;
+  final String phone;
+  final String role;
+
+  const ExamsPage({
+    super.key,
+    required this.userName,
+    required this.phone,
+    required this.role,
+  });
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,7 +85,12 @@ class ExamsPage extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => QuizPage(title: title)),
+          MaterialPageRoute(builder: (context) => QuizPage(
+            title: title,
+            userName: userName,
+            phone: phone,
+            role: role,
+          )),
         );
       },
       child: Container(
@@ -129,7 +149,17 @@ class ExamsPage extends StatelessWidget {
 
 class QuizPage extends StatefulWidget {
   final String title;
-  const QuizPage({super.key, required this.title});
+  final String userName;
+  final String phone;
+  final String role;
+
+  const QuizPage({
+    super.key,
+    required this.title,
+    required this.userName,
+    required this.phone,
+    required this.role,
+  });
 
   @override
   State<QuizPage> createState() => _QuizPageState();
@@ -173,7 +203,12 @@ class _QuizPageState extends State<QuizPage> {
 
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => ResultPage(score: score)),
+          MaterialPageRoute(builder: (context) => ResultPage(
+            score: score,
+            userName: widget.userName,
+            phone: widget.phone,
+            role: widget.role,
+          )),
         );
       }
     });
@@ -192,7 +227,12 @@ class _QuizPageState extends State<QuizPage> {
       timer?.cancel();
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => ResultPage(score: score)),
+        MaterialPageRoute(builder: (context) => ResultPage(
+          score: score,
+          userName: widget.userName,
+          phone: widget.phone,
+          role: widget.role,
+        )),
       );
     }
   }
@@ -327,7 +367,17 @@ class _QuizPageState extends State<QuizPage> {
 
 class ResultPage extends StatelessWidget {
   final int score;
-  const ResultPage({super.key, required this.score});
+  final String userName;
+  final String phone;
+  final String role;
+
+  const ResultPage({
+    super.key,
+    required this.score,
+    required this.userName,
+    required this.phone,
+    required this.role,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -379,7 +429,18 @@ class ResultPage extends StatelessWidget {
 
             ElevatedButton(
               onPressed: () {
-                Navigator.popUntil(context, (route) => route.isFirst);
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MainNavigation(
+                      userName: userName,
+                      phone: phone,
+                      role: role,
+                      initialIndex: 2,
+                    ),
+                  ),
+                      (route) => false,
+                );
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFF4169E1),

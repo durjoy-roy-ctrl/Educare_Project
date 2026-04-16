@@ -36,9 +36,13 @@ class _MainNavigationState extends State<MainNavigation> {
 
     // Everyone sees the same list of pages now
     _pages = [
-      const HomePage(),
+      HomePage(username: widget.userName, phone: widget.phone,),
       const CoursesPage(),
-      const ExamsPage(),
+       ExamsPage(
+        userName: widget.userName,
+        phone: widget.phone,
+        role: widget.role,
+      ),
       ProfilePage(
         userName: widget.userName,
         phone: widget.phone,
